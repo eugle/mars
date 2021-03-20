@@ -1,0 +1,16 @@
+type Link {
+    _id: ID!
+    title: String
+    url: String
+}
+
+type Basic {
+    title: String
+    content: String
+}
+
+type Query {
+    getLink (id: ID!): Link
+    getLinks: [Link]
+    getBasic: Basic
+}

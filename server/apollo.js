@@ -9,7 +9,7 @@ const resolvers = {
             const defaultData = {
                 "a.com": {host: 'a.com', lang: 'en', title: 'a.com', content: 'This is a.com data'},
                 "b.com": {host: 'b.com', lang: 'en', title: 'b.com', content: 'This is b.com data'},
-                "c.com": {host: 'b.com', lang: 'en', title: 'c.com', content: 'This is c.com data'},
+                "c.com": {host: 'c.com', lang: 'en', title: 'c.com', content: 'This is c.com data'},
                 "none": {host: 'none', lang: 'en', title: 'none', content: 'No data available'}
             }
 

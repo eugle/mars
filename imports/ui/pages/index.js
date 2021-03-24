@@ -14,7 +14,7 @@ const GET_BASIC = gql`
 
 const Home = ({host}) => {
 
-    const {data} = useQuery(GET_BASIC,{variables: {host}});
+    const {data} = useQuery(GET_BASIC, {variables: {host}});
     const {title, content} = data?.basic || {};
 
     return (
@@ -25,8 +25,8 @@ const Home = ({host}) => {
             </Helmet>
 
             <Div mt={15} p={15} r={3} b={[1, 's', 'f9']}>
-                <Div fs={18} lh={38} c='p'>{title}</Div>
-                <Div>{content}</Div>
+                <Div lh={38} c='p' tc fs={36}>{title}</Div>
+                <Div tc>{content}</Div>
             </Div>
         </>
     );

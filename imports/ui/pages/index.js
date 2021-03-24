@@ -4,20 +4,17 @@ import {Helmet} from "react-helmet-async";
 import {Div} from '@eugle/oneui';
 
 const GET_BASIC = gql`
-    {
-        basic: getBasic {
+    query GetBasic($host:String) {
+        basic: getBasic(host:$host) {
             title
             content
         }
     }
 `;
 
-const Home = () => {
-    const {loading, error, data} = useQuery(GET_BASIC);
+const Home = ({host}) => {
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error ⁉️</p>;
-
+    const {data} = useQuery(GET_BASIC,{variables: {host}});
     const {title, content} = data?.basic || {};
 
     return (

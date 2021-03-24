@@ -5,7 +5,7 @@ import typeDefs from "/imports/apollo/schema.graphql";
 
 const resolvers = {
     Query: {
-        getBasic: async (_, {}, {host, lang}) => {
+        getBasic: async (_, {host: queryHost}, {host, lang}) => {
             const defaultData = {
                 "a.com": {host: 'a.com', lang: 'en', title: 'a.com', content: 'This is a.com data'},
                 "b.com": {host: 'b.com', lang: 'en', title: 'b.com', content: 'This is b.com data'},
@@ -17,7 +17,7 @@ const resolvers = {
             function needWait() {
                 return new Promise(resolve => {
                     setTimeout(() => {
-                        console.log("Pretend that this is an asynchronous program");
+                        // console.log("Pretend that this is an asynchronous program");
                         resolve();
                     }, 5000)
                 })
@@ -25,14 +25,14 @@ const resolvers = {
 
             async function test() {
                 await needWait();
-                console.log("I should have been printed first");
+                // console.log("I should have been printed first");
             }
 
             await test();
 
-            console.log(new Date - startTime / 1000, 'seconds');
+            console.log((new Date - startTime) / 1000, 'seconds');
 
-            return defaultData[host || 'none'];
+            return defaultData[queryHost || host || 'none'];
         }
     },
 };

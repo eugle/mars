@@ -8,10 +8,9 @@ const cache = Meteor.isClient
     ? new InMemoryCache().restore(window.__APOLLO_STATE__)
     : new InMemoryCache();
 
-
-const initClient = (sink, token) => {
-    const host = sink.request?.headers?.host?.split(':')?.[0];
-    const lang = sink.request?.headers?.pathname?.split('/')?.[1];
+const initClient = async (sink, token) => {
+    const host = await sink?.request?.headers?.host?.split(':')?.[0];
+    const lang = await sink?.request?.headers?.pathname?.split('/')?.[1];
 
     const httpLink = new HttpLink({
         uri: Meteor.absoluteUrl('/graphql'),
@@ -32,11 +31,11 @@ const initClient = (sink, token) => {
         link: apolloLink,
         cache,
         ssrForceFetchDelay: 0,
-        defaultOptions: {
-            watchQuery: {
-                fetchPolicy: 'cache-and-network'
-            },
-        },
+        // defaultOptions: {
+        //     watchQuery: {
+        //         fetchPolicy: 'cache-and-network'
+        //     },
+        // },
     })
 
 }

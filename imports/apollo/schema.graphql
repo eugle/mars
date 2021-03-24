@@ -12,5 +12,5 @@ type Basic {
 type Query {
     getLink (id: ID!): Link
     getLinks: [Link]
-    getBasic: Basic
+    getBasic(host: String): Basic
 }

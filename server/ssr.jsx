@@ -15,13 +15,14 @@ function getClientData(client) {
     )}</script>`;
 }
 
-onPageLoad((sink) => {
+onPageLoad(async (sink) => {
     const token = cookie.get('token', sink.request.headers.cookie) || sink.request.url.query.token;
     const sheet = new ServerStyleSheet();
-    const client = initClient(sink, token);
+    const client = await initClient(sink, token);
     const helmetContext = {};
+    const host = sink.request.headers.host?.split(':')?.[0];
     const tree = sheet.collectStyles(
-        <App client={client} location={sink.request.url} context={helmetContext}/>
+        <App client={client} location={sink.request.url} context={helmetContext} host={host}/>
     );
 
     return getMarkupFromTree({
